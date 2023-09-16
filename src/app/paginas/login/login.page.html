@@ -7,23 +7,50 @@
 </ion-header>
 <ion-content>
   <div class="container">
-    <ion-list>
+    <ion-list class="formulario">
       <ion-item>
         <h1 class="titulo">TeLlevoApp</h1>
-        <p class="IOC">Inicia sesión o <span class="crea-cuenta">crea una cuenta aquí</span></p>
-        <br>
+        <p class="IOC">
+          Inicia sesión o
+          <span routerLink="/register" class="crea-cuenta"
+            >crea una cuenta aquí</span
+          >
+        </p>
+        <br />
         <ion-label position="floating">Correo electrónico</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
+        <ion-input
+          aria-label="Correo Electronico"
+          type="email"
+          [(ngModel)]="email"
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="{{ passwordType }}" [(ngModel)]="password"></ion-input>
-        <ion-icon slot="end" name="{{ passwordIcon }}" (click)="togglePasswordVisibility()"></ion-icon>
+        <ion-input
+          aria-label="Contraseña"
+          type="{{ passwordType }}"
+          [(ngModel)]="password"
+        ></ion-input>
+        <ion-icon
+          id="pass-icon"
+          slot="end"
+          name="{{ passwordIcon }}"
+          (click)="togglePasswordVisibility()"
+        ></ion-icon>
       </ion-item>
     </ion-list>
 
-    <ion-button class="login-button sep" expand="full" [disabled]="!isFormValid()" (click)="login()">Iniciar sesión</ion-button>
-    <p class="crea-cuenta olvide">Olvide mi contraseña</p>
-    
+    <div class="botones">
+      <ion-button
+        class="login-button"
+        expand="block"
+        [disabled]="!isFormValid()"
+        (click)="login()"
+        >Iniciar sesión</ion-button
+      >
+      <p routerLink="/forgetpassword" class="crea-cuenta olvide">
+        Olvide mi contraseña
+      </p>
+    </div>
   </div>
 </ion-content>

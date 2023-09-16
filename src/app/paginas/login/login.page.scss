@@ -10,16 +10,27 @@ ion-content {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
+  height: auto;
+  margin-top: 150px;
 }
 
+.formulario{
+  width: 100%;
+  padding: 0px 20px;
+}
 
 .titulo {
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 40px;
 }
 
 .IOC {
   color: #7f89a7;
+}
+
+#pass-icon{
+  position: relative;
+  top: 25px;
 }
 
 .crea-cuenta {
@@ -37,16 +48,14 @@ ion-content {
 .login-button {
   --background: #697085;
   --color: #FFFFFF;
-  --border-radius: 250px;
   width: 350px;
   height: 50px;
-  
+  --border-radius: 6px
 }
 
-.sep{
-  margin-top: 250px;
+.botones{
+  position: absolute;
+  bottom: 25px;
 }
-
-
 
 

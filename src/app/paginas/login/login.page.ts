@@ -30,7 +30,7 @@ export class LoginPage {
 
   constructor(private location: Location) {}
 
-goBack() {
-  this.location.back();
-}
+  goBack() {
+    this.location.back();
+  }
 }
