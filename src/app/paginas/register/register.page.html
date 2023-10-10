@@ -19,11 +19,14 @@
         <ion-input aria-label="NombreyApellido"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" id="fecha"
-          >Fecha de Nacimiento</ion-label
+        <ion-input
+          type="date"
+          expand="full"
+          label="Fecha Nacimiento"
+          placeholder="Ingrese Fecha"
+          slot="start"
         >
-        <ion-datetime-button datetime="datetime"></ion-datetime-button>
-        <div id="blocktime"></div>
+        </ion-input>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
             <ion-datetime id="datetime"></ion-datetime>
