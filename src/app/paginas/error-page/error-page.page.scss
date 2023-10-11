@@ -1,0 +1,52 @@
+
+.container{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+}
+
+.errormessage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.errormessage h1{
+    font-size: 40px;
+    font-weight: 800;
+}
+.errormessage p{
+    font-size: 20px;
+}
+
+
+.car{
+    padding: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 30% 20%;
+}
+
+#wheel{
+    width: 40px;
+    position: relative;
+    top: 100px;
+}
+
+#car{
+    rotate: 5deg;
+    position: relative;
+    top: 5px;
+}
+
+#man{
+    position: relative;
+    top: 25px;
+}
+
+.back{
+    padding: 20px;
+}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { AuthenticationService } from 'src/app/authentication.service';
+import { AuthenticationService } from 'src/app/servicios/authentication.service';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
