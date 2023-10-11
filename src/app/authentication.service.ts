@@ -50,4 +50,19 @@ export class AuthenticationService {
       return false;
     }
   }
+
+  async login(email: string, password: string): Promise<Boolean> {
+    const users: User[] = (await this.local.get('users')) || [];
+
+    const user = users.find(
+      (us: User) => us.email === email && us.password === password
+    );
+
+    if (user) {
+      this.autenticado = true;
+      return true;
+    }
+    this.autenticado = false;
+    return false;
+  }
 }

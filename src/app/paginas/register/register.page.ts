@@ -20,7 +20,7 @@ export class RegisterPage {
 
   register() {
     this.auth
-      .register(this.user.name, this.user.password, this.user.email)
+      .register(this.user.password, this.user.email, this.user.name)
       .then((res) => {
         if (res) {
           this.estado = 'Usuario ya Existe';
