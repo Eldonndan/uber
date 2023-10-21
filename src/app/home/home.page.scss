@@ -4,6 +4,7 @@
   gap: 190px;
   padding: 20px;
   padding-top: 200px;
+  max-width: 812px;
 }
 
 #container strong {
@@ -20,4 +21,12 @@
 
 #container a {
   text-decoration: none;
+}
+
+ion-loading{
+  --background: 
+}
+
+mat-spinner{
+  position: absolute;
 }

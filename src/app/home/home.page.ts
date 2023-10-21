@@ -6,11 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
+
 export class HomePage {
-
+  
+  
   constructor(private router: Router) {}
+  
+  sleep (ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
-  goToLogin() {
+  async goToLogin() {
+    await this.sleep(3000);
     this.router.navigate(['/login']);
   }
 

@@ -12,7 +12,6 @@ interface User {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  public autenticado!: boolean;
   private local!: Storage;
 
   constructor(private router: Router, private storage: Storage) {
@@ -35,7 +34,7 @@ export class AuthenticationService {
     );
 
     if (exists) {
-      console.log('Este weon ya existe');
+      console.log('Este compadre ya existe');
       return true;
     } else {
       const nuevo: User = {
@@ -59,10 +58,19 @@ export class AuthenticationService {
     );
 
     if (user) {
-      this.autenticado = true;
+      await this.local.set('actualuser', user);
+      await this.local.set('auth', true)
       return true;
+    }else{
+      await this.local.remove('actualuser')
+      await this.local.set('auth', false)
+      return false;
     }
-    this.autenticado = false;
+  }  
+
+  async logout () {
+    await this.local.remove('actualuser')
+    await this.local.set('auth', false)
     return false;
   }
 }

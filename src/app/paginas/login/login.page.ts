@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginPage {
   }
 
   isFormValid(): boolean {
-    return !!this.email && !!this.password;
+    return !!this.user.email && !!this.user.password;
   }
 
   user = {
@@ -29,27 +30,26 @@ export class LoginPage {
   };
 
   login() {
-    this.auth.login(this.email, this.password).then(() => {
-      if (this.auth.autenticado) {
+    this.auth.login(this.user.email, this.user.password).then(async () => {
+      const data = await this.storage.get('auth');
+      if (data) {
         let navigationExtras: NavigationExtras = {
           state: { user: this.user },
         };
         this.router.navigate(['/options'], navigationExtras);
       }
     });
-    // Aquí puedes agregar la lógica para el inicio de sesión
-    console.log('Iniciando sesión...');
-    console.log('Correo electrónico:', this.email);
-    console.log('Contraseña:', this.password);
   }
 
   constructor(
     private location: Location,
     private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
   ) {}
 
   goBack() {
+    this.auth.logout();
     this.location.back();
   }
 }

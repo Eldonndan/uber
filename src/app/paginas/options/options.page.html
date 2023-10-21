@@ -1,13 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/" (click)="goBack()"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense"> </ion-header>
+  <ion-header collapse="condense"> 
+  </ion-header>
+  <h1 id="name">Bienvenido {{user.name}}</h1>
   <div class="container">
     <div class="cube">
       <div class="image"></div>

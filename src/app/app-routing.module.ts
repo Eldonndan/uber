@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { NoIngresadoGuard } from './no-ingresado.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [NoIngresadoGuard],
     loadChildren: () =>
       import('./paginas/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'register',
+    canActivate: [NoIngresadoGuard],
     loadChildren: () =>
       import('./paginas/register/register.module').then(
         (m) => m.RegisterPageModule
@@ -27,6 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'forgetpassword',
+    canActivate: [NoIngresadoGuard],
     loadChildren: () =>
       import('./paginas/forgetpassword/forgetpassword.module').then(
         (m) => m.ForgetpasswordPageModule
