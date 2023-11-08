@@ -31,7 +31,6 @@ export class OptionsPage implements OnInit {
       if (state) {
         this.user.email = state['user'].email;
         this.user.password = state['user'].password;
-        console.log(this.user);
       }
     });
 
@@ -43,7 +42,6 @@ export class OptionsPage implements OnInit {
 
     if(actualuser){
       this.user = actualuser;
-      console.log(this.user)
     }
   }
 

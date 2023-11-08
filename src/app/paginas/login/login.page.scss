@@ -14,7 +14,7 @@ ion-content {
   margin-top: 150px;
 }
 
-.formulario{
+.formulario {
   width: 100%;
   padding: 0px 20px;
 }
@@ -28,7 +28,7 @@ ion-content {
   color: #7f89a7;
 }
 
-#pass-icon{
+#pass-icon {
   position: relative;
   top: 25px;
 }
@@ -47,15 +47,13 @@ ion-content {
 
 .login-button {
   --background: #697085;
-  --color: #FFFFFF;
+  --color: #ffffff;
   width: 350px;
   height: 50px;
-  --border-radius: 6px
+  --border-radius: 6px;
 }
 
-.botones{
+.botones {
   position: absolute;
   bottom: 25px;
 }
-
-

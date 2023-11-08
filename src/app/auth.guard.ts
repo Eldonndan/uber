@@ -6,7 +6,6 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthenticationService } from './servicios/authentication.service';
 import { Storage } from '@ionic/storage';
 
@@ -21,8 +20,6 @@ export class AuthGuard implements CanActivate {
   ): Promise<boolean>{
 
     const data = await this.storage.get('auth');
-
-    console.log(data)
 
       if (!data) {
         this.router.navigate(['/home']);
