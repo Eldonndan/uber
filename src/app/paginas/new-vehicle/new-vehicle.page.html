@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <ion-list class="formulario">
+        <h1 class="titulo">Registra un Vehiculo</h1>
+        <p class="IOC">
+          Rellena con los datos datos o
+          <span routerLink="/home" class="crea-cuenta">Vuelve a home</span>
+        </p> 
+      <ion-item>
+
+        <ion-input
+          [(ngModel)]="vehicle.brand"
+          aria-label="Marca"
+          label="Marca"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="vehicle.model"
+          aria-label="Modelo"
+          label="Modelo"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="vehicle.year"
+          aria-label="Anio"
+          type="number"
+          label="Anio"
+        ></ion-input>
+        <ion-icon id="pass-icon" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="vehicle.type"
+          aria-label="Tipo"
+          type="text"
+          label="Tipo"
+        ></ion-input>
+        <ion-icon id="pass-icon" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="vehicle.plate"
+          aria-label="Pantente"
+          type="text"
+          label="Pantente"
+        ></ion-input>
+        <ion-icon id="pass-icon" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="vehicle.seats"
+          aria-label="Cantidad de Asientos"
+          type="number"
+          label="Cantidad de Asientos"
+        ></ion-input>
+        <ion-icon id="pass-icon" slot="end"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+    <div class="botones">
+      <ion-button (click)="register()" class="login-button" expand="block"
+        >Registrar</ion-button
+      >
+    </div>
+  </div>
+</ion-content>
