@@ -37,6 +37,12 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'new-vehicle',
+    loadChildren: () => import('./paginas/new-vehicle/new-vehicle.module').then( 
+      m => m.NewVehiclePageModule
+      )
+  },
+  {
     path: 'options',
     canActivate: [AuthGuard],
     loadChildren: () =>
@@ -51,6 +57,7 @@ const routes: Routes = [
         (m) => m.ErrorPagePageModule
       ),
   },
+  
 ];
 
 @NgModule({
