@@ -7,6 +7,14 @@ interface User {
   password: string;
   email: string;
 }
+interface Vehicle {
+  brand: string;
+    model: string;
+    year: number;
+    type: string;
+    plate: string;
+    seats: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +31,39 @@ export class AuthenticationService {
     this.local = storage;
   }
 
-  async register(
+  async register_vehicle(
+    brand: string,
+    model: string,
+    year: number,
+    type: string,
+    plate: string,
+    seats: number
+  ): Promise<Boolean> {
+    const vehicles = (await this.local?.get('vehicles')) || [];
+    const exists = vehicles.find(
+      (vh: Vehicle) => vh.plate === plate
+    );
+    if (exists) {
+      console.log('Este auto ya existe');
+      return true;
+    } else {
+      const nuevo: Vehicle = {
+        brand,
+        model,
+        year,
+        type,
+        plate,
+        seats
+      };
+      vehicles.push(nuevo);
+      await this.local.set('vehicles', vehicles);
+      console.log('Ta listo');
+      this.router.navigate(['/options']);
+      return false;
+    }
+  }
+
+  async register_user(
     password: string,
     email: string,
     name: string
