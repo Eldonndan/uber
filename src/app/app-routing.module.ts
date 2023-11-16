@@ -50,6 +50,24 @@ const routes: Routes = [
         (m) => m.OptionsPageModule
       ),
   },
+
+  {
+    path: 'detalle-ruta',
+    loadChildren: () => import('./paginas/detalle-ruta/detalle-ruta.module').then( 
+      m => m.DetalleRutaPageModule)
+  },
+  
+  {
+    path: 'detalle-conductor',
+    loadChildren: () => import('./paginas/detalle-conductor/detalle-conductor.module').then( m => m.DetalleConductorPageModule)
+  },
+
+  {
+    path: 'armar-ruta',
+    loadChildren: () => import('./paginas/armar-ruta/armar-ruta.module').then( m => m.ArmarRutaPageModule)
+  },
+
+
   {
     path: '**',
     loadChildren: () =>
@@ -57,6 +75,11 @@ const routes: Routes = [
         (m) => m.ErrorPagePageModule
       ),
   },
+
+  
+
+  
+
   
 ];
 

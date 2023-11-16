@@ -18,6 +18,11 @@ export class OptionsPage implements OnInit {
 
   constructor(private router: Router, private activatedRuter: ActivatedRoute, private storage: Storage,private auth: AuthenticationService) {}
 
+  goToNewVehicle() {
+    this.router.navigate(['/new-vehicle']);
+  }
+
+
 
   public user = {
     email: '',

@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 150px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 50px;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+  }
+  
+  .button1 {
+    --background: #697085;
+    --color: #ffffff;
+    width: 350px;
+    height: 50px;
+    --border-radius: 6px;
+    width: 80%; /* Ancho del botón */
+    max-width: 300px; /* Ancho máximo */
+  }
+  
