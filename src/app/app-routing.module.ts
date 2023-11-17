@@ -38,9 +38,10 @@ const routes: Routes = [
   },
   {
     path: 'new-vehicle',
-    loadChildren: () => import('./paginas/new-vehicle/new-vehicle.module').then( 
-      m => m.NewVehiclePageModule
-      )
+    loadChildren: () =>
+      import('./paginas/new-vehicle/new-vehicle.module').then(
+        (m) => m.NewVehiclePageModule
+      ),
   },
   {
     path: 'options',
@@ -53,21 +54,34 @@ const routes: Routes = [
 
   {
     path: 'detalle-ruta',
-    loadChildren: () => import('./paginas/detalle-ruta/detalle-ruta.module').then( 
-      m => m.DetalleRutaPageModule)
+    loadChildren: () =>
+      import('./paginas/detalle-ruta/detalle-ruta.module').then(
+        (m) => m.DetalleRutaPageModule
+      ),
   },
-  
+
   {
     path: 'detalle-conductor',
-    loadChildren: () => import('./paginas/detalle-conductor/detalle-conductor.module').then( m => m.DetalleConductorPageModule)
+    loadChildren: () =>
+      import('./paginas/detalle-conductor/detalle-conductor.module').then(
+        (m) => m.DetalleConductorPageModule
+      ),
   },
 
   {
     path: 'armar-ruta',
-    loadChildren: () => import('./paginas/armar-ruta/armar-ruta.module').then( m => m.ArmarRutaPageModule)
+    loadChildren: () =>
+      import('./paginas/armar-ruta/armar-ruta.module').then(
+        (m) => m.ArmarRutaPageModule
+      ),
   },
-
-
+  {
+    path: 'seleccion-vehicle',
+    loadChildren: () =>
+      import('./paginas/seleccion-vehicle/seleccion-vehicle.module').then(
+        (m) => m.SeleccionVehiclePageModule
+      ),
+  },
   {
     path: '**',
     loadChildren: () =>
@@ -75,12 +89,6 @@ const routes: Routes = [
         (m) => m.ErrorPagePageModule
       ),
   },
-
-  
-
-  
-
-  
 ];
 
 @NgModule({

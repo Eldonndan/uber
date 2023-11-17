@@ -9,11 +9,11 @@ interface User {
 }
 interface Vehicle {
   brand: string;
-    model: string;
-    year: number;
-    type: string;
-    plate: string;
-    seats: number;
+  model: string;
+  year: number;
+  type: string;
+  plate: string;
+  seats: number;
 }
 
 @Injectable({
@@ -40,9 +40,7 @@ export class AuthenticationService {
     seats: number
   ): Promise<Boolean> {
     const vehicles = (await this.local?.get('vehicles')) || [];
-    const exists = vehicles.find(
-      (vh: Vehicle) => vh.plate === plate
-    );
+    const exists = vehicles.find((vh: Vehicle) => vh.plate === plate);
     if (exists) {
       console.log('Este auto ya existe');
       return true;
@@ -53,12 +51,12 @@ export class AuthenticationService {
         year,
         type,
         plate,
-        seats
+        seats,
       };
       vehicles.push(nuevo);
       await this.local.set('vehicles', vehicles);
       console.log('Ta listo');
-      this.router.navigate(['/options']);
+      this.router.navigate(['/seleccion-vehicle']);
       return false;
     }
   }
@@ -99,18 +97,18 @@ export class AuthenticationService {
 
     if (user) {
       await this.local.set('actualuser', user);
-      await this.local.set('auth', true)
+      await this.local.set('auth', true);
       return true;
-    }else{
-      await this.local.remove('actualuser')
-      await this.local.set('auth', false)
+    } else {
+      await this.local.remove('actualuser');
+      await this.local.set('auth', false);
       return false;
     }
-  }  
+  }
 
-  async logout () {
-    await this.local.remove('actualuser')
-    await this.local.set('auth', false)
+  async logout() {
+    await this.local.remove('actualuser');
+    await this.local.set('auth', false);
     return false;
   }
 }

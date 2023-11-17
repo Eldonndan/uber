@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class NewVehiclePage {
   public estado: String = '';
   public mensaje = '';
 
-  constructor(private auth: AuthenticationService) {}
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
   vehicle = {
     brand: '',

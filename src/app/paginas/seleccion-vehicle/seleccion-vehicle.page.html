@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/options"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Seleccionar Vehiculo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="car">
+      <div class="foto">
+        <img src="../../../assets/icon/car.svg" alt="" />
+      </div>
+      <div class="info">
+        <div class="marca">Suzuki</div>
+        <div class="modelo">Alto</div>
+        <div class="patente">
+          <div class="placa">LPDT92</div>
+        </div>
+      </div>
+    </div>
+    <ion-button expand="block" (click)="register()">Añadir Vehiculo</ion-button>
+  </div>
+</ion-content>
