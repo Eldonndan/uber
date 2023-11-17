@@ -8,13 +8,12 @@
 <ion-content>
   <div class="container">
     <ion-list class="formulario">
-        <h1 class="titulo">Registra un Vehiculo</h1>
-        <p class="IOC">
-          Rellena con los datos datos o
-          <span routerLink="/home" class="crea-cuenta">Vuelve a home</span>
-        </p> 
+      <h1 class="titulo">Registra un Vehiculo</h1>
+      <p class="IOC">
+        Rellena con los datos datos o
+        <span routerLink="/home" class="crea-cuenta">Vuelve a home</span>
+      </p>
       <ion-item>
-
         <ion-input
           [(ngModel)]="vehicle.brand"
           aria-label="Marca"
@@ -34,19 +33,25 @@
         <ion-input
           [(ngModel)]="vehicle.year"
           aria-label="Anio"
-          type="number"
+          type="string"
           label="Anio"
+          (keydown)="soloNumeros($event)"
+          maxlength="4"
         ></ion-input>
         <ion-icon id="pass-icon" slot="end"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-input
-          [(ngModel)]="vehicle.type"
-          aria-label="Tipo"
-          type="text"
+        <ion-select
           label="Tipo"
-        ></ion-input>
-        <ion-icon id="pass-icon" slot="end"></ion-icon>
+          label-placement="floating"
+          [(ngModel)]="vehicle.type"
+        >
+          <ion-select-option value="Sedan">Sedan</ion-select-option>
+          <ion-select-option value="CityCar">CityCar</ion-select-option>
+          <ion-select-option value="Suv">Suv</ion-select-option>
+          <ion-select-option value="Pickup">Pickup</ion-select-option>
+          <ion-select-option value="Furgon">Furgon</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-input
@@ -61,12 +66,13 @@
         <ion-input
           [(ngModel)]="vehicle.seats"
           aria-label="Cantidad de Asientos"
-          type="number"
+          type="string"
           label="Cantidad de Asientos"
+          (keydown)="soloNumeros($event)"
+          maxlength="1"
         ></ion-input>
         <ion-icon id="pass-icon" slot="end"></ion-icon>
       </ion-item>
-
     </ion-list>
     <div class="botones">
       <ion-button (click)="register()" class="login-button" expand="block"

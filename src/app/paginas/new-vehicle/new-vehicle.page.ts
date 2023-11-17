@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import { Router } from '@angular/router';
-import { AnimationController } from '@ionic/angular';
-import type { Animation } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-vehicle',
@@ -10,7 +7,6 @@ import type { Animation } from '@ionic/angular';
   styleUrls: ['./new-vehicle.page.scss'],
 })
 export class NewVehiclePage {
-
   public estado: String = '';
   public mensaje = '';
 
@@ -19,21 +15,22 @@ export class NewVehiclePage {
   vehicle = {
     brand: '',
     model: '',
-    year: 0,
+    year: '',
     type: '',
     plate: '',
-    seats: 0
+    seats: '',
   };
 
   register() {
     this.auth
       .register_vehicle(
-        this.vehicle.brand, 
-        this.vehicle.model, 
-        this.vehicle.year,
+        this.vehicle.brand,
+        this.vehicle.model,
+        +this.vehicle.year,
         this.vehicle.type,
         this.vehicle.plate,
-        this.vehicle.seats)
+        +this.vehicle.seats
+      )
       .then((res) => {
         if (res) {
           this.estado = 'Vehiculo ya Existe';
@@ -41,5 +38,19 @@ export class NewVehiclePage {
           this.mensaje = 'Registro Exitoso';
         }
       });
+  }
+
+  soloNumeros(event: any) {
+    const tecla = event.key;
+    if (
+      !/^[0-9]$/.test(tecla) &&
+      tecla !== 'Backspace' &&
+      tecla !== 'Delete' &&
+      tecla !== 'ArrowLeft' &&
+      tecla !== 'ArrowRight' &&
+      tecla !== 'Tab'
+    ) {
+      event.preventDefault();
+    }
   }
 }
