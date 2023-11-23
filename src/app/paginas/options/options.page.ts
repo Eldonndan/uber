@@ -15,43 +15,29 @@ interface User {
   styleUrls: ['./options.page.scss'],
 })
 export class OptionsPage implements OnInit {
+  constructor(private router: Router, private auth: AuthenticationService) {}
 
-  constructor(private router: Router, private activatedRuter: ActivatedRoute, private storage: Storage,private auth: AuthenticationService) {}
+  actualUser!: User;
 
-  goToNewVehicle() {
-    this.router.navigate(['/new-vehicle']);
+  goToSelection() {
+    this.router.navigate(['/seleccion-vehicle']);
   }
 
+  getActualUser() {
+    const actual = localStorage.getItem('actualuser');
 
-
-  public user = {
-    email: '',
-    password: '',
-    name: ''
-  };
-
-  async ngOnInit() {
-    this.activatedRuter.queryParams.subscribe(() => {
-      let state = this.router.getCurrentNavigation()?.extras.state;
-      if (state) {
-        this.user.email = state['user'].email;
-        this.user.password = state['user'].password;
-      }
-    });
-
-    const users: User[] = await this.storage.get('users')
-
-    const actualuser = users.find(
-      (us: User) => us.email === this.user.email && us.password === this.user.password
-    );
-
-    if(actualuser){
-      this.user = actualuser;
+    if (actual) {
+      this.actualUser = JSON.parse(actual);
+    } else {
+      console.log('no se debería ver este mensaje por ningun motivo');
     }
   }
 
-  goBack() {
-    this.auth.logout();
+  ngOnInit() {
+    this.getActualUser();
   }
 
+  goBack() {
+    this.auth.logout_ls();
+  }
 }

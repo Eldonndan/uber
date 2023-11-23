@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
+import { NavController } from '@ionic/angular';
 
 interface Vehicle {
   brand: string;
@@ -9,6 +9,13 @@ interface Vehicle {
   type: string;
   plate: string;
   seats: number;
+  owner: string;
+}
+
+interface User {
+  email: string;
+  password: string;
+  name: string;
 }
 
 @Component({
@@ -17,26 +24,60 @@ interface Vehicle {
   styleUrls: ['./seleccion-vehicle.page.scss'],
 })
 export class SeleccionVehiclePage implements OnInit {
-  constructor(private router: Router, private storage: Storage) {}
+  constructor(private router: Router, private navCtrl: NavController) {}
 
-  private local!: Storage;
+  vehicles: Vehicle[] = [];
+  myvehicles: Vehicle[] = [];
+  actualUser!: User;
 
-  vehiculos: Vehicle[] = [];
-
-  async ngOnInit() {
-    await this.buscarautos();
+  ngOnInit() {
+    this.buscarautos_ls();
+    this.getActualUser();
+    this.filtrarAutos();
   }
 
-  async buscarautos() {
-    const autos = (await this.local?.get('vehicles')) || [];
-    if (autos) {
-      console.log(autos);
-      console.log('si hay');
-      //this.vehiculos = JSON.parse(autos);
+  filtrarAutos() {
+    this.vehicles.forEach((car) => {
+      if (car.owner == this.actualUser.email) {
+        this.myvehicles.push(car);
+      }
+    });
+
+    console.log(this.myvehicles);
+  }
+
+  getActualUser() {
+    const actual = localStorage.getItem('actualuser');
+
+    if (actual) {
+      this.actualUser = JSON.parse(actual);
+    } else {
+      console.log('no se debería ver este mensaje por ningun motivo');
     }
+  }
+
+  buscarautos_ls() {
+    const vehicles = localStorage.getItem('vehicles');
+
+    if (vehicles) {
+      this.vehicles = JSON.parse(vehicles);
+      console.log(this.vehicles);
+    } else {
+      this.vehicles = [];
+    }
+  }
+
+  formatPatente(patente: string): string {
+    return (
+      patente.slice(0, 2) + '·' + patente.slice(2, 4) + '·' + patente.slice(4)
+    );
   }
 
   register() {
     this.router.navigate(['/new-vehicle']);
+  }
+
+  goBack() {
+    this.navCtrl.back();
   }
 }

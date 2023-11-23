@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import { NavigationExtras, Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -29,27 +27,17 @@ export class LoginPage {
     password: this.password,
   };
 
-  login() {
-    this.auth.login(this.user.email, this.user.password).then(async () => {
-      const data = await this.storage.get('auth');
-      if (data) {
-        let navigationExtras: NavigationExtras = {
-          state: { user: this.user },
-        };
-        this.router.navigate(['/options'], navigationExtras);
-      }
-    });
+  login_ls() {
+    this.auth.login_ls(this.user.email, this.user.password);
   }
 
   constructor(
     private location: Location,
-    private auth: AuthenticationService,
-    private router: Router,
-    private storage: Storage
+    private auth: AuthenticationService
   ) {}
 
   goBack() {
-    this.auth.logout();
+    this.auth.logout_ls();
     this.location.back();
   }
 }

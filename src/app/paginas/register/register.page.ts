@@ -19,14 +19,10 @@ export class RegisterPage {
   };
 
   register() {
-    this.auth
-      .register_user(this.user.password, this.user.email, this.user.name)
-      .then((res) => {
-        if (res) {
-          this.estado = 'Usuario ya Existe';
-        } else {
-          this.mensaje = 'Registro Exitoso';
-        }
-      });
+    this.auth.register_user_ls(
+      this.user.password,
+      this.user.email,
+      this.user.name
+    );
   }
 }

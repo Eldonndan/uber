@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button default-href="/options"></ion-back-button>
+      <ion-back-button default-href="/" (click)="goBack()"></ion-back-button>
     </ion-buttons>
     <ion-title>Seleccionar Vehiculo</ion-title>
   </ion-toolbar>
@@ -9,18 +9,22 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
-    <div class="car">
-      <div class="foto">
-        <img src="../../../assets/icon/car.svg" alt="" />
-      </div>
-      <div class="info">
-        <div class="marca">Suzuki</div>
-        <div class="modelo">Alto</div>
-        <div class="patente">
-          <div class="placa">LPDT92</div>
+    <ng-template ngFor let-car [ngForOf]="myvehicles" let-i="index">
+      <div class="car">
+        <div class="foto">
+          <img src="../../../assets/icon/car.svg" alt="" />
+        </div>
+        <div class="info">
+          <div class="marca">{{ car.brand}}</div>
+          <div class="modelo">{{ car.model}}</div>
+          <div class="patente">
+            <div class="placa">
+              {{ formatPatente(car.plate).toUpperCase() }}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-template>
     <ion-button expand="block" (click)="register()">Añadir Vehiculo</ion-button>
   </div>
 </ion-content>
