@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { AuthenticationService } from './servicios/authentication.service';
+import { AuthenticationService } from '../servicios/authentication.service';
 import { Storage } from '@ionic/storage';
 
 @Injectable({

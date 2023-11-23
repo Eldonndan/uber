@@ -3,18 +3,24 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/" (click)="goBack()"></ion-back-button>
     </ion-buttons>
+    <ion-title>Armar Ruta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense"> 
-  </ion-header>
   <div class="container">
     <ion-list class="formulario">
-      <ion-label position="floating">Comuna</ion-label>
-            <ion-input aria-label="Comuna" type="text"></ion-input>
-      <ion-label position="floating">Tarifa</ion-label>
-            <ion-input aria-label="Tarifa" type="number"></ion-input>
+      <ion-item>
+        <div id="map"></div>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Comuna</ion-label>
+        <ion-input aria-label="Comuna"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Tarifa</ion-label>
+        <ion-input aria-label="Tarifa"></ion-input>
+      </ion-item>
     </ion-list>
   </div>
   <div class="button-container">

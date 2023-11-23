@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <div class="container">
     <ng-template ngFor let-car [ngForOf]="myvehicles" let-i="index">
-      <div class="car">
+      <div class="car" (click)="selectVehicle(car.plate)">
         <div class="foto">
           <img src="../../../assets/icon/car.svg" alt="" />
         </div>

@@ -73,6 +73,11 @@ export class SeleccionVehiclePage implements OnInit {
     );
   }
 
+  selectVehicle(carplate: string) {
+    localStorage.setItem('actualvehicle', JSON.stringify(carplate));
+    this.router.navigate(['/armar-ruta']);
+  }
+
   register() {
     this.router.navigate(['/new-vehicle']);
   }
