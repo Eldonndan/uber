@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-viaje',
@@ -9,12 +10,27 @@ import * as L from 'leaflet';
 export class ViajePage implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  alat!: number;
+  alon!: number;
 
-  ionViewDidEnter() {
-    const map = L.map('map').setView([-33.433157, -70.6157], 17);
+  ngOnInit() {
+    this.obtenerUbicacion(); // Llama a obtenerUbicacion en ngOnInit
+  }
 
-    this.CrearMapa(map);
+  async obtenerUbicacion() {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.alat = coordinates.coords.latitude;
+      this.alon = coordinates.coords.longitude;
+      console.log('Ubicación actual:', this.alat, this.alon);
+
+      // Después de obtener la ubicación, crea el mapa
+      const map = L.map('map').setView([this.alat, this.alon], 17);
+
+      this.CrearMapa(map);
+    } catch (error) {
+      console.error('Error al obtener la ubicación', error);
+    }
   }
 
   CrearMapa(map: L.Map | L.LayerGroup<any>) {
@@ -22,5 +38,8 @@ export class ViajePage implements OnInit {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
+
+    // Agregar un marcador en la ubicación actual
+    const marker = L.marker([this.alat, this.alon]).addTo(map);
   }
 }
