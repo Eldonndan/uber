@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vehiculos Disponibles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ng-template ngFor let-car [ngForOf]="rutasactivas" let-i="index">
+      <div class="car">
+        <div class="foto">
+          <img src="../../../assets/icon/car2.png" alt="" />
+        </div>
+        <div class="info">
+          <div class="nombre">{{ car.conductor }}</div>
+          <div class="asientos">
+            <ng-container *ngFor="let cliente of car.clientes; let i = index"
+              ><h1>X</h1></ng-container
+            >
+            <ng-template ngFor let-seat [ngForOf]="getDetallesAsientos(car)">
+              <img src="../../../assets/icon/usuario.png" alt=""
+            /></ng-template>
+          </div>
+        </div>
+        <div id="boton">
+          <ion-button
+            fill="clear"
+            shape="round"
+            id="add"
+            (click)="enviarRutaSeleccionada(car)"
+          >
+            +
+          </ion-button>
+        </div>
+      </div>
+    </ng-template>
+    <div class="car">
+      <div class="foto">
+        <img src="../../../assets/icon/car2.png" alt="" />
+      </div>
+      <div class="info">
+        <div class="nombre">Roberto Manfinfla</div>
+        <div class="asientos">
+          <img src="../../../assets/icon/usuario.png" alt="" />
+          <img src="../../../assets/icon/usuario.png" alt="" />
+          <img src="../../../assets/icon/usuario.png" alt="" />
+          <img src="../../../assets/icon/usuario.png" alt="" />
+          <img src="../../../assets/icon/usuario.png" alt="" />
+        </div>
+      </div>
+      <div id="boton">
+        <ion-button fill="clear" shape="round" id="add"> + </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

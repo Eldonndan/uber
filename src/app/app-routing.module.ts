@@ -54,6 +54,7 @@ const routes: Routes = [
 
   {
     path: 'detalle-ruta',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./paginas/detalle-ruta/detalle-ruta.module').then(
         (m) => m.DetalleRutaPageModule
@@ -62,6 +63,7 @@ const routes: Routes = [
 
   {
     path: 'detalle-conductor',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./paginas/detalle-conductor/detalle-conductor.module').then(
         (m) => m.DetalleConductorPageModule
@@ -70,6 +72,7 @@ const routes: Routes = [
 
   {
     path: 'armar-ruta',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./paginas/armar-ruta/armar-ruta.module').then(
         (m) => m.ArmarRutaPageModule
@@ -77,10 +80,23 @@ const routes: Routes = [
   },
   {
     path: 'seleccion-vehicle',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./paginas/seleccion-vehicle/seleccion-vehicle.module').then(
         (m) => m.SeleccionVehiclePageModule
       ),
+  },
+  {
+    path: 'autos-disponibles',
+    loadChildren: () =>
+      import('./paginas/autos-disponibles/autos-disponibles.module').then(
+        (m) => m.AutosDisponiblesPageModule
+      ),
+  },
+  {
+    path: 'viaje',
+    loadChildren: () =>
+      import('./paginas/viaje/viaje.module').then((m) => m.ViajePageModule),
   },
   {
     path: '**',

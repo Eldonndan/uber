@@ -25,6 +25,12 @@
         </div>
       </div>
     </ng-template>
+
     <ion-button expand="block" (click)="register()">Añadir Vehiculo</ion-button>
+    <div *ngIf="ruta()">
+      <ion-button expand="block" (click)="viajar()" id="encurso"
+        >Carrera En Curso</ion-button
+      >
+    </div>
   </div>
 </ion-content>

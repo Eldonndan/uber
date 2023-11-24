@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" id="todo">
   <div class="container">
     <ion-list class="formulario">
       <ion-item>
@@ -15,15 +15,17 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Comuna</ion-label>
-        <ion-input aria-label="Comuna"></ion-input>
+        <ion-input aria-label="Comuna" [(ngModel)]="comuna"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Tarifa</ion-label>
-        <ion-input aria-label="Tarifa"></ion-input>
+        <ion-input aria-label="Tarifa" [(ngModel)]="tarifa"></ion-input>
       </ion-item>
     </ion-list>
   </div>
   <div class="button-container">
-    <ion-button class="button1" expand="block">Iniciar Ruta</ion-button>
+    <ion-button (click)="guardar()" class="button1" expand="block"
+      >Iniciar Ruta</ion-button
+    >
   </div>
 </ion-content>

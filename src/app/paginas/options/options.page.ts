@@ -23,6 +23,10 @@ export class OptionsPage implements OnInit {
     this.router.navigate(['/seleccion-vehicle']);
   }
 
+  goToAvailible() {
+    this.router.navigate(['/autos-disponibles']);
+  }
+
   getActualUser() {
     const actual = localStorage.getItem('actualuser');
 

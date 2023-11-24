@@ -85,4 +85,18 @@ export class SeleccionVehiclePage implements OnInit {
   goBack() {
     this.navCtrl.back();
   }
+
+  ruta() {
+    const ruta = localStorage.getItem('rutaselected');
+
+    if (ruta) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  viajar() {
+    this.router.navigate(['/detalle-ruta']);
+  }
 }
