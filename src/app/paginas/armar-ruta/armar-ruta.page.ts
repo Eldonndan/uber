@@ -5,6 +5,7 @@ import * as L from 'leaflet';
 import { RutaActual } from 'src/app/models/ruta-actual';
 import { User } from 'src/app/models/user';
 import { Vehicle } from 'src/app/models/vehicle';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-armar-ruta',
@@ -23,41 +24,57 @@ export class ArmarRutaPage implements OnInit {
   rutasactivas: RutaActual[] = [];
   vehiculos: Vehicle[] = [];
   carroactual!: Vehicle;
+  alat!: number;
+  alon!: number;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.obtnerUbicacion();
+  }
 
-  ionViewDidEnter() {
+  async obtnerUbicacion() {
     this.getActualUser();
 
-    const map = L.map('map').setView([-33.433157, -70.6157], 17);
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.alat = coordinates.coords.latitude;
+      this.alon = coordinates.coords.longitude;
+      console.log('Ubicación actual:', this.alat, this.alon);
 
-    this.CrearMapa(map);
+      // Después de obtener la ubicación, crea el mapa
+      const map = L.map('map').setView([this.alat, this.alon], 17);
 
-    let marker: L.Marker | null = null;
+      this.CrearMapa(map);
 
-    const CustomIcon = L.icon({
-      iconUrl: '../../../assets/icon/location.png',
-      iconSize: [40, 40],
-    });
+      let marker: L.Marker | null = null;
 
-    const markerOptions = {
-      icon: CustomIcon,
-      draggable: true,
-    };
+      const CustomIcon = L.icon({
+        iconUrl: '../../../assets/icon/location.png',
+        iconSize: [40, 40],
+      });
 
-    map.on('click', (e) => {
-      if (marker) {
-        map.removeLayer(marker);
-      }
+      const markerOptions = {
+        icon: CustomIcon,
+        draggable: true,
+      };
 
-      marker = L.marker([e.latlng.lat, e.latlng.lng], markerOptions).addTo(map);
+      map.on('click', (e) => {
+        if (marker) {
+          map.removeLayer(marker);
+        }
 
-      if (marker) {
-        const markerLatLng = marker.getLatLng();
-        this.latf = markerLatLng.lat;
-        this.lonf = markerLatLng.lng;
-      }
-    });
+        marker = L.marker([e.latlng.lat, e.latlng.lng], markerOptions).addTo(
+          map
+        );
+
+        if (marker) {
+          const markerLatLng = marker.getLatLng();
+          this.latf = markerLatLng.lat;
+          this.lonf = markerLatLng.lng;
+        }
+      });
+    } catch (error) {
+      console.error('Error al obtener la ubicación', error);
+    }
   }
 
   goBack() {

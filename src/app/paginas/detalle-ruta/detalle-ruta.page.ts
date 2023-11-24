@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { RutaActual } from 'src/app/models/ruta-actual';
 
@@ -8,7 +9,7 @@ import { RutaActual } from 'src/app/models/ruta-actual';
   styleUrls: ['./detalle-ruta.page.scss'],
 })
 export class DetalleRutaPage implements OnInit {
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private router: Router) {}
 
   rutaactual!: RutaActual;
 
@@ -26,5 +27,9 @@ export class DetalleRutaPage implements OnInit {
     if (ruta) {
       this.rutaactual = JSON.parse(ruta);
     }
+  }
+
+  viajar() {
+    this.router.navigate(['/viaje']);
   }
 }

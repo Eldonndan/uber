@@ -3,6 +3,8 @@ import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
 import 'leaflet-routing-machine';
 import { RutaActual } from 'src/app/models/ruta-actual';
+import { withJsonpSupport } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-viaje',
@@ -10,13 +12,14 @@ import { RutaActual } from 'src/app/models/ruta-actual';
   styleUrls: ['./viaje.page.scss'],
 })
 export class ViajePage implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   alat!: number;
   alon!: number;
   waypoints: L.LatLng[] = [];
   map: any;
   rutona!: RutaActual;
+  rutas: RutaActual[] = [];
   coordenadas: number[][] = [];
 
   ngOnInit() {
@@ -74,22 +77,6 @@ export class ViajePage implements OnInit {
     const marker = L.marker([this.alat, this.alon]).addTo(map);
   }
 
-  AgregarRuta() {
-    // Agrega algunos puntos de ejemplo (latitud, longitud)
-    const puntos = [
-      [this.alat, this.alon],
-      [this.alat + 0.01, this.alon + 0.01],
-      [this.alat + 0.02, this.alon - 0.01],
-    ];
-
-    this.waypoints = puntos.map((coord) => L.latLng(coord[0], coord[1]));
-
-    // Crea la capa de la ruta
-    L.Routing.control({
-      waypoints: this.waypoints,
-    }).addTo(this.map);
-  }
-
   getcoords() {
     const ruta = localStorage.getItem('rutaselected');
 
@@ -102,5 +89,33 @@ export class ViajePage implements OnInit {
 
       this.coordenadas.push([cliente.lat, cliente.lon]);
     });
+
+    this.coordenadas.push([this.rutona.lat, this.rutona.lon]);
+  }
+
+  finalizar() {
+    const ruta = localStorage.getItem('rutaselected');
+
+    if (ruta) {
+      this.rutona = JSON.parse(ruta);
+    }
+
+    const rutas = localStorage.getItem('rutasactuales');
+
+    if (rutas) {
+      this.rutas = JSON.parse(rutas);
+
+      const nuevasRutas = this.rutas.filter(
+        (caminito) =>
+          !(
+            caminito.lat === this.rutona.lat && caminito.lon === this.rutona.lon
+          )
+      );
+      localStorage.removeItem('rutaselected');
+
+      localStorage.setItem('rutasactuales', JSON.stringify(nuevasRutas));
+
+      this.router.navigate(['/options']);
+    }
   }
 }
